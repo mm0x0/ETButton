@@ -8,17 +8,15 @@ UnityのEvent Triggerで動くボタン
   * C# 6.0以上
 
 * 使い方 （ETButton）
-  1. Canvasを作成してGameObjectを作成
-  2. 作成したGameObjectにETButtonをアタッチ
+  1. Canvasを作成してImageを作成
+  2. 作成したImageのGameObjectにETButtonをアタッチ
   3. イベントを設定
   ```
   void Awake ()
   {
-    // クリック
+    // クリック、タップ（引数にActionを渡す）
     GetComponent<ETButton> ().RegistClickEvent (Click);
-
-    // タップ
-    GetComponent<ETButton> ().RegistTouchEvent (Click);
+    GetComponent<ETButton> ().RegistTouchEvent (Touch);
   }
 
   void Click () =>
@@ -29,8 +27,8 @@ UnityのEvent Triggerで動くボタン
   ```
 
 * 使い方  (ETButtonDOTween)
-  1. Canvasを作成してGameObjectを作成
-  2. 作成したGameObjectにETButtonDOTweenをアタッチ
+  1. Canvasを作成してImageを作成
+  2. 作成したImageのGameObjectにETButtonDOTweenをアタッチ
   3. インスペクタで動きを設定
       - Common ... ボタンの共通の動き（チェックを外すと個別に設定可能）
         - Target ... 動かす対象オブジェクト
@@ -43,5 +41,5 @@ UnityのEvent Triggerで動くボタン
       - Move ... localPositionを設定した数値に移動
       - Rotate ... rotationを設定した数値に変形
       - Scale ... localScaleを設定した数値に変形
-  
+
 
