@@ -38,8 +38,8 @@ UnityのEvent Triggerで動くボタン
         - Target ... 動かす対象オブジェクト
         - Push / Duration ... 動かす時間（押したとき）
         - Push / Easing ... 動きのカーブ（押したとき）
-        - Release / Duration ... 動かす時間（押したとき）
-        - Release / Duration ... 動きのカーブ（押したとき）
+        - Release / Duration ... 動かす時間（離したとき）
+        - Release / Duration ... 動きのカーブ（離したとき）
       - Fade ... Color, Spriteを設定した透明度でフェードイン
         - Fade Front ... オンにするとフェード画像を最前面に表示
       - Move ... localPositionを設定した数値に移動
