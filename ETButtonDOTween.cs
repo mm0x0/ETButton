@@ -245,6 +245,11 @@ public sealed class ETButtonDOTween : MonoBehaviour
 	{
 		movieSeq.Kill (true);
 
+		if (pushDuration)
+			fPushDuration = mPushDuration = rPushDuration = sPushDuration = commonPushDuration;
+		if (pushEasing)
+			fPushEasing   = mPushEasing   = rPushEasing   = sPushEasing   = commonPushEasing;
+
 		// フェード画像を作成
 		if (fade && fadeObj == null)
 		{
