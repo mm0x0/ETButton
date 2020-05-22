@@ -1,5 +1,9 @@
 UnityのEvent Triggerで動くボタン
 
+- 説明
+  - ETButton ... EventTriggerでタップ、クリックイベントを重複なく登録できるボタン
+  - ETButtonDOTween ... ETButtonのタッチ時の動きをインスペクタで設定するコンポーネント
+
 * 必要なライブラリ
   * DOTween
   * OdinInspector
