@@ -235,9 +235,9 @@ public sealed class ETButtonDOTween : MonoBehaviour
 		if (rotate) baseRotation = rTarget.transform.localEulerAngles;
 		if (scale)  baseScale    = sTarget.transform.localScale;
 
-		GetComponent<MY.ETButton> ().RegistTouchEvent   (TouchDown);
-		GetComponent<MY.ETButton> ().RegistClickEvent   (TouchUp);
-		GetComponent<MY.ETButton> ().RegistRolloutEvent (RollOut);
+		GetComponent<ETButton> ().RegistTouchEvent   (TouchDown);
+		GetComponent<ETButton> ().RegistClickEvent   (TouchUp);
+		GetComponent<ETButton> ().RegistRolloutEvent (RollOut);
 	}
 
 	// 押下時に形状を変化
