@@ -231,10 +231,12 @@ public sealed class ETButtonDOTween : MonoBehaviour
 	{
 		if (target) fTarget = mTarget = rTarget = sTarget = commonTarget;
 
+		// 初期形状を記録
 		if (move)   basePosition = mTarget.transform.localPosition;
 		if (rotate) baseRotation = rTarget.transform.localEulerAngles;
 		if (scale)  baseScale    = sTarget.transform.localScale;
 
+		// タッチイベントを設定
 		GetComponent<ETButton> ().RegistTouchEvent   (TouchDown);
 		GetComponent<ETButton> ().RegistClickEvent   (TouchUp);
 		GetComponent<ETButton> ().RegistRolloutEvent (RollOut);
@@ -245,6 +247,7 @@ public sealed class ETButtonDOTween : MonoBehaviour
 	{
 		movieSeq.Kill (true);
 
+		// Common設定
 		if (pushDuration)
 			fPushDuration = mPushDuration = rPushDuration = sPushDuration = commonPushDuration;
 		if (pushEasing)
@@ -276,31 +279,31 @@ public sealed class ETButtonDOTween : MonoBehaviour
 			}
 		}
 
+		// フェード画像は透明度を0にしておく
 		if (fade)   fadeObj.GetComponent<CanvasGroup> ().alpha = 0;
 		if (fade)   fadeObj.SetActive (true);
 
-		if (fade)   baseAlpha    = fadeObj.GetComponent<CanvasGroup> ().alpha;
-		if (move)   basePosition = mTarget.transform.localPosition;
-		if (rotate) baseRotation = rTarget.transform.localEulerAngles;
-		if (scale)  baseScale    = sTarget.transform.localScale;
-
-		// ムービーを再生
+		// ツイーンを再生
 		touching = true;
 
 		movieSeq = DOTween.Sequence ();
 
-		if (fade)   movieSeq.Join (DOTween.Sequence ()
-			.Join (fadeObj.GetComponent<CanvasGroup> ().DOFade (fadeAlpha, fPushDuration).SetEase (fPushEasing))
-		);
-		if (move)   movieSeq.Join (DOTween.Sequence ()
-			.Join (mTarget.transform.DOLocalMove (pushPosition, mPushDuration).SetEase (mPushEasing))
-		);
-		if (rotate) movieSeq.Join (DOTween.Sequence ()
-			.Join (rTarget.transform.DORotate    (pushRotation, rPushDuration).SetEase (rPushEasing))
-		);
-		if (scale)  movieSeq.Join (DOTween.Sequence ()
-			.Join (sTarget.transform.DOScale     (pushScale   , sPushDuration).SetEase (sPushEasing))
-		);
+		if (fade)
+			movieSeq.Join (DOTween.Sequence ()
+				.Join (fadeObj.GetComponent<CanvasGroup> ()
+					.DOFade      (fadeAlpha,    fPushDuration).SetEase (fPushEasing)));
+		if (move)
+			movieSeq.Join (DOTween.Sequence ()
+				.Join (mTarget.transform
+					.DOLocalMove (pushPosition, mPushDuration).SetEase (mPushEasing)));
+		if (rotate)
+			movieSeq.Join (DOTween.Sequence ()
+				.Join (rTarget.transform
+					.DORotate    (pushRotation, rPushDuration).SetEase (rPushEasing)));
+		if (scale)
+			movieSeq.Join (DOTween.Sequence ()
+				.Join (sTarget.transform
+					.DOScale     (pushScale   , sPushDuration).SetEase (sPushEasing)));
 
 		movieSeq.Play ();
 	}
@@ -310,6 +313,7 @@ public sealed class ETButtonDOTween : MonoBehaviour
 	{
 		movieSeq.Kill (true);
 
+		// Common設定
 		if (releaseDuration)
 			fReleaseDuration = mReleaseDuration = rReleaseDuration = sReleaseDuration = commonReleaseDuration;
 		if (releaseEasing)
@@ -320,17 +324,25 @@ public sealed class ETButtonDOTween : MonoBehaviour
 
 		touching = false;
 
-		if (fade)   movieSeq.Join (DOTween.Sequence ()
-			.Join (fadeObj.GetComponent<CanvasGroup> ().DOFade (baseAlpha, fReleaseDuration).SetEase (fReleaseEasing))
+		if (fade)
+			movieSeq.Join (DOTween.Sequence ()
+				.Join (fadeObj.GetComponent<CanvasGroup> ()
+					.DOFade      (baseAlpha,    fReleaseDuration).SetEase (fReleaseEasing))
 		);
-		if (move)   movieSeq.Join (DOTween.Sequence ()
-			.Join (mTarget.transform.DOLocalMove (basePosition, mReleaseDuration).SetEase (mReleaseEasing))
+		if (move)
+			movieSeq.Join (DOTween.Sequence ()
+				.Join (mTarget.transform
+					.DOLocalMove (basePosition, mReleaseDuration).SetEase (mReleaseEasing))
 		);
-		if (rotate) movieSeq.Join (DOTween.Sequence ()
-			.Join (rTarget.transform.DORotate    (baseRotation, rReleaseDuration).SetEase (rReleaseEasing))
+		if (rotate)
+			movieSeq.Join (DOTween.Sequence ()
+				.Join (rTarget.transform
+					.DORotate    (baseRotation, rReleaseDuration).SetEase (rReleaseEasing))
 		);
-		if (scale)  movieSeq.Join (DOTween.Sequence ()
-			.Join (sTarget.transform.DOScale     (baseScale   , sReleaseDuration).SetEase (sReleaseEasing))
+		if (scale)
+			movieSeq.Join (DOTween.Sequence ()
+				.Join (sTarget.transform
+					.DOScale     (baseScale   , sReleaseDuration).SetEase (sReleaseEasing))
 		);
 
 		movieSeq.Play ();
@@ -360,6 +372,7 @@ public sealed class ETButtonDOTween : MonoBehaviour
 		if (scale)  sTarget.transform.localScale       = baseScale;
 	}
 
+	// 非アクティブになったときはツイーンを止めて初期形状に戻す
 	public void OnDisable ()
 	{
 		movieSeq.Kill (true);
