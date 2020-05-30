@@ -165,9 +165,9 @@ public sealed class ETButtonDOTween : MonoBehaviour
 	 BoxGroup        ("rotate/Rotate To/G/L/Push")]
 	Ease rPushEasing = Ease.OutQuint;
 
-	[HideIfGroup ("rotate/Rotate To/G/R", MemberName = "UseCommonRelease")]
 	[SerializeField, HideIf ("releaseDuration"), LabelText ("Duration"), LabelWidth (55),
 	 HorizontalGroup ("rotate/Rotate To/G", 0.5f),
+	 HideIfGroup     ("rotate/Rotate To/G/R", MemberName = "UseCommonRelease"),
 	 BoxGroup        ("rotate/Rotate To/G/R/Release")]
 	float rReleaseDuration = 0.2f;
 
@@ -237,9 +237,9 @@ public sealed class ETButtonDOTween : MonoBehaviour
 		if (scale)  baseScale    = sTarget.transform.localScale;
 
 		// タッチイベントを設定
-		GetComponent<ETButton> ().RegistTouchEvent   (TouchDown);
-		GetComponent<ETButton> ().RegistClickEvent   (TouchUp);
-		GetComponent<ETButton> ().RegistRolloutEvent (RollOut);
+		GetComponent<ETButton> ().RegisterTouchEvent   (TouchDown);
+		GetComponent<ETButton> ().RegisterClickEvent   (TouchUp);
+		GetComponent<ETButton> ().RegisterRolloutEvent (RollOut);
 	}
 
 	// 押下時に形状を変化

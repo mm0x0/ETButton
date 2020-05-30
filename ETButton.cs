@@ -6,19 +6,19 @@ using UnityEngine.Events;
 public sealed class ETButton : MonoBehaviour
 {
 	// タップイベントを設定
-	public void RegistTouchEvent (UnityAction f) =>
+	public void RegisterTouchEvent (UnityAction f) =>
 		SetEvent (f, EventTriggerType.PointerDown);
 
 	// クリックイベントを設定
-	public void RegistClickEvent (UnityAction f) =>
+	public void RegisterClickEvent (UnityAction f) =>
 		SetEvent (f, EventTriggerType.PointerClick);
 
 	// ロールオーバーイベントを設定
-	public void RegistRolloverEvent (UnityAction f) =>
+	public void RegisterRolloverEvent (UnityAction f) =>
 		SetEvent (f, EventTriggerType.PointerEnter);
 
 	// ロールアウトイベントを設定
-	public void RegistRolloutEvent (UnityAction f) =>
+	public void RegisterRolloutEvent (UnityAction f) =>
 		SetEvent (f, EventTriggerType.PointerExit);
 
 	// タッチイベントの設定
@@ -35,7 +35,7 @@ public sealed class ETButton : MonoBehaviour
 	}
 
 	// タッチイベントの削除
-	// * 引数ActionとTouchEntryのアクションが一致したら削除する
+	// * 引数ActionとETButtonEntryのアクションが一致したら削除する
 	public void RemoveEvent (UnityAction f)
 	{
 		ETButtonEntry tgtEntry = null;
